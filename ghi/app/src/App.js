@@ -3,9 +3,10 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import ManufacturerList from './ManufacturerList';
 import ManufacturerForm from './ManufacturerForm';
+import VehicleModelList from './VehicleModelList';
 
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <Nav />
@@ -14,9 +15,16 @@ function App(props) {
           <Route path="/" element={<MainPage />} />
 
           <Route path="manufacturers">
-            <Route path="" element={<ManufacturerList manufacturers={props.manufacturers} />} />
+            <Route path="" element={<ManufacturerList />} />
             <Route path="create" element={<ManufacturerForm />} />
           </Route>
+
+          <Route path="models">
+            <Route path="" element={<VehicleModelList />} />
+            {/* <Route path="create" element={<VehicleModelForm />} /> */}
+          </Route>
+
+
         </Routes>
       </div>
     </BrowserRouter>

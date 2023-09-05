@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 
-function ManufacturerList(props) {
-  const [manufacturers, setManufacturers] = useState([]);
+function VehicleModelList(props) {
+  const [models, setModels] = useState([]);
 
   const fetchData = async () => {
-    const url = "http://localhost:8100/api/manufacturers/";
+    const url = "http://localhost:8100/api/models/";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setManufacturers(data.manufacturers);
+      setModels(data.models);
     }
   };
 
@@ -21,19 +21,23 @@ function ManufacturerList(props) {
   return (
     <div>
       <div>
-        <h1>Manufacturers</h1>
+        <h1>Models</h1>
       </div>
       <table className="table table-striped">
         <thead>
         <tr>
             <th>Name</th>
+            <th>Manufacturer</th>
+            <th>Picture</th>
           </tr>
         </thead>
         <tbody>
-          {manufacturers.map(manufacturer => {
+          {models.map(model => {
             return (
-              <tr key={manufacturer.id}>
-                <td>{manufacturer.name}</td>
+              <tr key={model.id}>
+                <td>{model.name}</td>
+                <td>{model.manufacturer.name}</td>
+                <td>{model.picture_url}</td>
               </tr>
             );
           })}
@@ -43,4 +47,4 @@ function ManufacturerList(props) {
   );
 }
 
-export default ManufacturerList;
+export default VehicleModelList;
