@@ -8,7 +8,7 @@ function ManufacturerForm () {
         const data = {};
         data.name = name;
 
-        const manufacturerUrl = 'http://localhost:3000/manufacturers/';
+        const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -19,8 +19,6 @@ function ManufacturerForm () {
 
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
-            const newManufacturer = await response.json();
-
             setName('');
         }
     }
@@ -39,7 +37,7 @@ function ManufacturerForm () {
             <h1>Create a manufacturer</h1>
             <form onSubmit={handleSubmit} id="create-location-form">
               <div className="form-floating mb-3">
-                <input onChange={handleNameChange} placeholder="Manufacturer name..." required type="text" name="name" id="name" className="form-control"/>
+                <input onChange={handleNameChange} placeholder="Manufacturer name..." required type="text" value={name} name="name" id="name" className="form-control"/>
                 <label htmlFor="name">Manufacturer name...</label>
               </div>
               <button className="btn btn-primary">Create</button>

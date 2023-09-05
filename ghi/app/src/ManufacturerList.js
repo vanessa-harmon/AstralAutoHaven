@@ -17,6 +17,16 @@ function ManufacturerList(props) {
     fetchData();
   }, []);
 
+  const handleDeleteManufacturer = (id) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`http://localhost:8100/api/manufacturers/${id}/`, { method: "DELETE" }).then(
+        () => {
+          window.location.reload();
+        }
+      );
+    }
+  };
+
 
   return (
     <div>
@@ -34,6 +44,7 @@ function ManufacturerList(props) {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>
+                <button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button>
               </tr>
             );
           })}

@@ -37,7 +37,7 @@ function VehicleModelList(props) {
               <tr key={model.id}>
                 <td>{model.name}</td>
                 <td>{model.manufacturer.name}</td>
-                <td>{model.picture_url}</td>
+                <td><img src={model.picture_url} alt={model.name} /></td>
               </tr>
             );
           })}
