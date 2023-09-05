@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 
-function VehicleModelList(props) {
+function VehicleModelList() {
   const [models, setModels] = useState([]);
 
   const fetchData = async () => {
@@ -17,6 +17,15 @@ function VehicleModelList(props) {
     fetchData();
   }, []);
 
+  const handleDeleteModel = (id) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`http://localhost:8100/api/models/${id}/`, { method: "DELETE" }).then(
+        () => {
+          window.location.reload();
+        }
+      );
+    }
+  };
 
   return (
     <div>
@@ -38,6 +47,7 @@ function VehicleModelList(props) {
                 <td>{model.name}</td>
                 <td>{model.manufacturer.name}</td>
                 <td><img src={model.picture_url} alt={model.name} /></td>
+                <td><button onClick={() => {handleDeleteModel(model.id)}}>Delete</button></td>
               </tr>
             );
           })}
