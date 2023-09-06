@@ -44,7 +44,7 @@ function ManufacturerList(props) {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>
-                <button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button>
+                <td><button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button></td>
               </tr>
             );
           })}

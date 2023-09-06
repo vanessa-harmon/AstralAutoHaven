@@ -17,8 +17,10 @@ function VehicleModelForm() {
         "Content-Type": "application/json",
       },
     };
+    console.log(fetchConfig)
 
     const response = await fetch(modelsUrl, fetchConfig);
+    console.log(response)
     if (response.ok) {
       setName('');
       setPictureUrl('');
