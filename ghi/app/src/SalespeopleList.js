@@ -17,7 +17,6 @@ function SalespeopleList() {
     fetchData();
   }, []);
 
-
   return (
     <div>
       <div>

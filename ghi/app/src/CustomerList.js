@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 
-function ManufacturerList() {
-  const [manufacturers, setManufacturers] = useState([]);
+function CustomerList() {
+  const [customers, setCustomers] = useState([]);
 
   const fetchData = async () => {
-    const url = "http://localhost:8100/api/manufacturers/";
+    const url = "http://localhost:8090/api/customers/";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setManufacturers(data.manufacturers);
+      setCustomers(data.customers);
     }
   };
 
@@ -17,9 +17,9 @@ function ManufacturerList() {
     fetchData();
   }, []);
 
-  const handleDeleteManufacturer = (id) => {
+  const handleDeleteCustomer = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`http://localhost:8100/api/manufacturers/${id}/`, { method: "DELETE" }).then(
+      fetch(`http://localhost:8090/api/customers/${id}/`, { method: "DELETE" }).then(
         () => {
           window.location.reload();
         }
@@ -31,12 +31,15 @@ function ManufacturerList() {
   return (
     <div>
       <div>
-        <h1>Manufacturers</h1>
+        <h1>Customers</h1>
       </div>
       <table className="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
           </tr>
         </thead>
         <tbody>
@@ -54,4 +57,4 @@ function ManufacturerList() {
   );
 }
 
-export default ManufacturerList;
+export default CustomerList;

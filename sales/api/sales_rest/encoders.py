@@ -1,5 +1,5 @@
 from common.json import ModelEncoder
-from .models import Salesperson
+from .models import Salesperson, Customer
 
 
 class SalespersonEncoder(ModelEncoder):
@@ -9,4 +9,15 @@ class SalespersonEncoder(ModelEncoder):
         "first_name",
         "last_name",
         "employee_id",
+    ]
+
+
+class CustomerEncoder(ModelEncoder):
+    model = Customer
+    properties = [
+        "id",
+        "first_name",
+        "last_name",
+        "address",
+        "phone_number",
     ]
