@@ -61,9 +61,12 @@ function TechnicianForm() {
                 id="name"
                 className="form-control"
               />
+              <label htmlFor="First Name">First Name...</label>
+              </div>
+              <div className="form-floating mb-3">
               <input
                 onChange={handleLastNameChange}
-                placeholder="Manufacturer"
+                placeholder="Last Name"
                 required
                 type="text"
                 value={last_name}
@@ -71,6 +74,9 @@ function TechnicianForm() {
                 id="name"
                 className="form-control"
               />
+              <label htmlFor="Last Name">Last Name...</label>
+              </div>
+              <div className="form-floating mb-3">
               <input
                 onChange={handleEmployeeIDChange}
                 placeholder="Employee"
@@ -81,7 +87,8 @@ function TechnicianForm() {
                 id="name"
                 className="form-control"
               />
-              <label htmlFor="name">Employee...</label>
+              <label htmlFor="name">Employee ID...</label>
+              <div className="form-floating mb-3"></div>
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
