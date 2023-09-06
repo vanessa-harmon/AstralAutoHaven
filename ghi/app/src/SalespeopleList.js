@@ -17,6 +17,14 @@ function SalespeopleList() {
     fetchData();
   }, []);
 
+  const handleDeleteSalesperson = (id) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`http://localhost:8090/api/salespeople/${id}/`, { method: "DELETE" })
+      .then(() => {window.location.reload();}
+      );
+    }
+  };
+
   return (
     <div>
       <div>
@@ -37,7 +45,7 @@ function SalespeopleList() {
                 <td>{salesperson.employee_id}</td>
                 <td>{salesperson.first_name}</td>
                 <td>{salesperson.last_name}</td>
-                <td><button>Delete</button></td>
+                <td><button onClick={() => {handleDeleteSalesperson(salesperson.id)}}>Delete</button></td>
               </tr>
             );
           })}
