@@ -9,7 +9,7 @@ function AutomobileList() {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
-      setAutomobiles(data.automobiles);
+      setAutomobiles(data.autos);
     }
   };
 
@@ -41,8 +41,8 @@ function AutomobileList() {
                 <td>{automobile.color}</td>
                 <td>{automobile.year}</td>
                 <td>{automobile.model.name}</td>
-                <td>{automobile.manufacturer.name}</td>
-                <td>{automobile.sold}</td>
+                <td>{automobile.model.manufacturer.name}</td>
+                <td>{automobile.sold ? 'Yes' : 'No'}</td>
                 <td>
                   <button>Delete</button>
                 </td>

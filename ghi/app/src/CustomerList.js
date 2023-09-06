@@ -43,11 +43,14 @@ function CustomerList() {
           </tr>
         </thead>
         <tbody>
-          {manufacturers.map(manufacturer => {
+          {customers.map(customer => {
             return (
-              <tr key={manufacturer.id}>
-                <td>{manufacturer.name}</td>
-                <td><button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button></td>
+              <tr key={customer.id}>
+                <td>{customer.first_name}</td>
+                <td>{customer.last_name}</td>
+                <td>{customer.address}</td>
+                <td>{customer.phone_number}</td>
+                <td><button onClick={() => {handleDeleteCustomer(customer.id)}}>Delete</button></td>
               </tr>
             );
           })}
