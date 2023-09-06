@@ -13,6 +13,10 @@ django.setup()
 # from service_rest.models import Something
 
 
+
+
+
+
 def poll(repeat=True):
     while True:
         print('Service poller polling for data')
@@ -20,7 +24,7 @@ def poll(repeat=True):
             # Write your polling logic, here
             # Do not copy entire file
             pass
-        
+
         except Exception as e:
             print(e, file=sys.stderr)
 
