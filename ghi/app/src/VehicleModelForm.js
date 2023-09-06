@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 function VehicleModelForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = {};
     data.name = name;
     data.picture_url = pictureUrl;
     data.manufacturer = manufacturer;
+    const modelUrl = "http://localhost:8100/api/models/";
 
-    const modelsUrl = "http://localhost:8100/api/models/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -17,16 +16,13 @@ function VehicleModelForm() {
         "Content-Type": "application/json",
       },
     };
-    console.log(fetchConfig)
-
-    const response = await fetch(modelsUrl, fetchConfig);
-    console.log(response)
+    const response = await fetch(modelUrl, fetchConfig);
     if (response.ok) {
       setName('');
       setPictureUrl('');
-      setManufacturer('');
+      setManufacturer('')
     }
-  };
+  }
 
   const [name, setName] = useState("");
 

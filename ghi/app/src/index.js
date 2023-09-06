@@ -24,3 +24,20 @@ async function loadSalespeople() {
   }
 }
 loadSalespeople();
+
+
+
+async function loadAutomobiles() {
+  const response = await fetch("http://localhost:8100/api/automobiles/");
+  if (response.ok) {
+    const automobileData = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App automobiles={automobileData.automobiles} />
+      </React.StrictMode>
+    );
+  } else {
+    console.error("ERROR", response);
+  }
+}
+loadAutomobiles();

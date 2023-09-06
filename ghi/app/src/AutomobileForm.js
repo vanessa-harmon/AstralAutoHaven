@@ -87,6 +87,9 @@ function AutomobileForm() {
                 id="color"
                 className="form-control"
               />
+              <label htmlFor="color">Color...</label>
+            </div>
+            <div className="form-floating mb-3">
               <input
                 onChange={handleYearChange}
                 placeholder="Year"
@@ -97,6 +100,9 @@ function AutomobileForm() {
                 id="year"
                 className="form-control"
               />
+              <label htmlFor="year">Year...</label>
+            </div>
+            <div className="form-floating mb-3">
               <input
                 onChange={handleVinChange}
                 placeholder="Vin"
@@ -107,6 +113,9 @@ function AutomobileForm() {
                 id="vin"
                 className="form-control"
               />
+              <label htmlFor="Vin">VIN...</label>
+            </div>
+            <div className="mb-3">
               <select
                 onChange={handleModelChange}
                 required
@@ -115,18 +124,17 @@ function AutomobileForm() {
                 value={model}
                 className="form-select"
               >
-                <option value="">Choose an Automobile...</option>
-                {AutomobileList.map((automobile) => {
+                <option value="">Choose a Model...</option>
+                {models.map((model) => {
                   return (
-                    <option key={automobile.id} value={automobile.id}>
-                      {automobile.model}
+                    <option key={model.id} value={model.id}>
+                      {model.name}
                     </option>
                   );
                 })}
               </select>
-              <label htmlFor="name">Automobile name...</label>
-            </div>
-            <button className="btn btn-primary">Create</button>
+              </div>
+            <button onClick={handleSubmit} className="btn btn-primary">Create</button>
           </form>
         </div>
       </div>
