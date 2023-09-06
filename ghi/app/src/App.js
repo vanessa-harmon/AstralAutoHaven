@@ -15,6 +15,7 @@ import TechnicianList from './TechnicianList';
 import TechnicianForm from './TechnicianForm';
 import SaleForm from './SaleForm';
 import SaleList from './SaleList';
+import SalespersonHistory from './SalespersonHistory';
 
 function App() {
   return (
@@ -57,8 +58,9 @@ function App() {
           <Route path="sales">
             <Route path="" element={<SaleList />} />
             <Route path="create" element={<SaleForm />} />
+            <Route path='history' element={<SalespersonHistory />} />
           </Route>
-          
+
         </Routes>
       </div>
     </BrowserRouter>

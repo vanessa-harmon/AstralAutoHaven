@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 
 
 function SaleList() {
-  const [manufacturers, setManufacturers] = useState([]);
+  const [sales, setSales] = useState([]);
 
   const fetchData = async () => {
-    const url = "http://localhost:8100/api/manufacturers/";
+    const url = "http://localhost:8090/api/sales/";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setManufacturers(data.manufacturers);
+      setSales(data.sales);
     }
   };
 
@@ -17,7 +17,7 @@ function SaleList() {
     fetchData();
   }, []);
 
-  const handleDeleteManufacturer = (id) => {
+  const handleDeleteSale = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       fetch(`http://localhost:8100/api/manufacturers/${id}/`, { method: "DELETE" }).then(
         () => {
@@ -31,20 +31,28 @@ function SaleList() {
   return (
     <div>
       <div>
-        <h1>Manufacturers</h1>
+        <h1>Sales</h1>
       </div>
       <table className="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Salesperson Employee ID</th>
+            <th>Salesperson Name</th>
+            <th>Customer</th>
+            <th>VIN</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>
-          {manufacturers.map(manufacturer => {
+          {sales.map(sale => {
             return (
-              <tr key={manufacturer.id}>
-                <td>{manufacturer.name}</td>
-                <td><button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button></td>
+              <tr key={sale.id}>
+                <td>{sale.name}</td>
+                <td>{sale.name}</td>
+                <td>{sale.name}</td>
+                <td>{sale.name}</td>
+                <td>${sale.price}</td>
+                <td><button onClick={() => {handleDeleteSale(sale.id)}}>Delete</button></td>
               </tr>
             );
           })}
