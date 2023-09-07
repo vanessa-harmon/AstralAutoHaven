@@ -1,44 +1,53 @@
 import React, { useState, useEffect } from "react";
 
 function VehicleModelForm() {
+  const [name, setName] = useState('');
+  const [pictureUrl, setPictureUrl] = useState('');
+  const [manufacturer, setManufacturer] = useState('');
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {};
     data.name = name;
     data.picture_url = pictureUrl;
-    data.manufacturer = manufacturer;
-    const modelUrl = "http://localhost:8100/api/models/";
+    data.manufacturer_id = manufacturer;
+
+    const modelUrl = 'http://localhost:8100/api/models/';
 
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await fetch(modelUrl, fetchConfig);
-    if (response.ok) {
-      setName('');
-      setPictureUrl('');
-      setManufacturer('')
+    console.log("fetchConfig:", fetchConfig)
+
+    try {
+      const response = await fetch(modelUrl, fetchConfig);
+
+      if (response.ok) {
+        setName('');
+        setPictureUrl('');
+        setManufacturer('')
+      } else {
+        console.error('Error:', response)
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
     }
   }
 
-  const [name, setName] = useState("");
 
   const handleNameChange = (event) => {
     const value = event.target.value;
     setName(value);
   };
 
-  const [pictureUrl, setPictureUrl] = useState("");
-
   const handlePictureUrlChange = (event) => {
     const value = event.target.value;
     setPictureUrl(value);
   };
-
-  const [manufacturer, setManufacturer] = useState("");
 
   const handleManufacturerChange = (event) => {
     const value = event.target.value;
@@ -49,9 +58,7 @@ function VehicleModelForm() {
 
   const fetchData = async () => {
     const url = "http://localhost:8100/api/manufacturers/";
-
     const response = await fetch(url);
-
     if (response.ok) {
       const data = await response.json();
       setManufacturers(data.manufacturers);
@@ -92,7 +99,7 @@ function VehicleModelForm() {
                 id="picture_url"
                 className="form-control"
               />
-              <label htmlFor="city">Picture URL...</label>
+              <label htmlFor="picture url">Picture URL...</label>
             </div>
             <div className="mb-3">
               <select
@@ -104,12 +111,12 @@ function VehicleModelForm() {
                 className="form-select"
               >
                 <option value="">Choose a manufacturer...</option>
-                {manufacturers.map((manufacturer) => {
+                {manufacturers.map(manufacturer => {
                   return (
                     <option key={manufacturer.id} value={manufacturer.id}>
                       {manufacturer.name}
                     </option>
-                  );
+                  )
                 })}
               </select>
             </div>
