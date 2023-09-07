@@ -16,9 +16,9 @@ function AutomobileList() {
     fetchData();
   }, []);
 
-  const handleDeleteAutomobile = (id) => {
+  const handleDeleteAutomobile = (vin) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`http://localhost:8100/api/automobiles/${id}/`, { method: "DELETE" }).then(
+      fetch(`http://localhost:8100/api/automobiles/${vin}/`, { method: "DELETE" }).then(
         () => {
           window.location.reload();
         }
@@ -53,7 +53,7 @@ function AutomobileList() {
                 <td>{automobile.model.manufacturer.name}</td>
                 <td>{automobile.sold ? 'Yes' : 'No'}</td>
                 <td>
-                  <button onClick={() => {handleDeleteAutomobile(automobile.id)}}>Delete</button>
+                  <button onClick={() => {handleDeleteAutomobile(automobile.vin)}}>Delete</button>
                 </td>
               </tr>
             );

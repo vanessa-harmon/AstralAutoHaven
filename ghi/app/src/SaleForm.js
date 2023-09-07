@@ -14,12 +14,13 @@ function SaleForm() {
     event.preventDefault();
 
     const data = {};
-    data.automobile = automobile;
-    data.salesperson = salesperson;
-    data.customer = customer;
+    data.automobile_id = automobile;
+    data.salesperson_id = salesperson;
+    data.customer_id = customer;
     data.price = price;
 
     const saleUrl = "http://localhost:8090/api/sales/";
+    console.log(saleUrl)
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -27,15 +28,22 @@ function SaleForm() {
         "Content-Type": "application/json",
       },
     };
+    console.log("fetchConfig:", fetchConfig)
 
-    const response = await fetch(saleUrl, fetchConfig);
-    if (response.ok) {
-      setAutomobile("");
-      setSalesperson("");
-      setCustomer("");
-      setPrice("");
+    try {
+      const response = await fetch(saleUrl, fetchConfig);
+      if (response.ok) {
+        setAutomobile("");
+        setSalesperson("");
+        setCustomer("");
+        setPrice("");
+      } else {
+      console.error('Failed to fetch:', response.statusText)
+      }
+    } catch (error) {
+      console.error('An error occurred during the fetch:', error)
     }
-  };
+    };
 
   const handleAutomobileChange = (event) => {
     const value = event.target.value;

@@ -46,7 +46,7 @@ function VehicleModelList() {
               <tr key={model.id}>
                 <td>{model.name}</td>
                 <td>{model.manufacturer.name}</td>
-                <td><img src={model.picture_url} alt={model.name} /></td>
+                <td><img src={model.picture_url} alt={model.name} width="500" height="300" /></td>
                 <td><button onClick={() => {handleDeleteModel(model.id)}}>Delete</button></td>
               </tr>
             );

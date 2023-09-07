@@ -21,7 +21,6 @@ function VehicleModelForm() {
         'Content-Type': 'application/json',
       },
     };
-    console.log("fetchConfig:", fetchConfig)
 
     try {
       const response = await fetch(modelUrl, fetchConfig);
