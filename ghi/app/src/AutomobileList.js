@@ -8,7 +8,6 @@ function AutomobileList() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setAutomobiles(data.autos);
     }
   };
@@ -16,6 +15,16 @@ function AutomobileList() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleDeleteAutomobile = (id) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`http://localhost:8100/api/automobiles/${id}/`, { method: "DELETE" }).then(
+        () => {
+          window.location.reload();
+        }
+      );
+    }
+  };
 
   return (
     <div>
@@ -44,7 +53,7 @@ function AutomobileList() {
                 <td>{automobile.model.manufacturer.name}</td>
                 <td>{automobile.sold ? 'Yes' : 'No'}</td>
                 <td>
-                  <button>Delete</button>
+                  <button onClick={() => {handleDeleteAutomobile(automobile.id)}}>Delete</button>
                 </td>
               </tr>
             );
