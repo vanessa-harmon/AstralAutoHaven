@@ -60,7 +60,7 @@ def show_appointments(request, id):
         content = json.loads(request.body)
         Appointment.objects.filter(id=id).update(**content)
 
-        appointment = Appointment.objects.get(id-id)
+        appointment = Appointment.objects.get(id=id)
         return JsonResponse(
             appointment,
             encoder=AppointmentEncoder,
@@ -78,16 +78,16 @@ def show_technicians(request, id):
             safe=False,
         )
     elif request.method == "DELETE":
-        count, _ = Appointment.objects.filter(id=id).delete()
+        count, _ = Technician.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
 
     else:
         content = json.loads(request.body)
-        Appointment.objects.filter(id=id).update(**content)
+        Technician.objects.filter(id=id).update(**content)
 
-        appointment = Appointment.objects.get(id-id)
+        technician = Technician.objects.get(id=id)
         return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
+            technician,
+            encoder=TechnicianEncoder,
             safe=False,
         )
