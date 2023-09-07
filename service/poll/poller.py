@@ -11,7 +11,7 @@ django.setup()
 
 # Import models from service_rest, here. Ignore vs-code error hinting
 # from service_rest.models import Something
-from sales_rest.models import AutomobileVO
+from service_rest.models import AutomobileVO
 
 
 def get_automobiles():
