@@ -43,12 +43,13 @@ function TechnicianList() {
           {technician.map((technician) => {
             return (
               <tr key={technician.first_name}>
+                <td>{technician.first_name}</td>
                 <td>{technician.last_name}</td>
                 <td>{technician.employee_id}</td>
                 <td>
                   <button
                     onClick={() => {
-                      handleDeleteModel(technician.employee_id);
+                      handleDeleteModel(technician.id);
                     }}
                   >
                     Delete

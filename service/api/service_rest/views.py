@@ -66,3 +66,28 @@ def show_appointments(request, id):
             encoder=AppointmentEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["DELETE", "GET", "PUT"])
+def show_technicians(request, id):
+    if request.method == "GET":
+        technician = Technician.objects.get(id=id)
+        return JsonResponse(
+            technician,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )
+    elif request.method == "DELETE":
+        count, _ = Appointment.objects.filter(id=id).delete()
+        return JsonResponse({"deleted": count > 0})
+
+    else:
+        content = json.loads(request.body)
+        Appointment.objects.filter(id=id).update(**content)
+
+        appointment = Appointment.objects.get(id-id)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )

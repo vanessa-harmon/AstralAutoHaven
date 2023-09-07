@@ -17,6 +17,7 @@ import SaleForm from './SaleForm';
 import SaleList from './SaleList';
 import AppointmentList from './AppointmentList';
 import AppointmentForm from './AppointmentForm';
+import SalespersonHistory from './SalespersonHistory';
 
 function App() {
   return (
