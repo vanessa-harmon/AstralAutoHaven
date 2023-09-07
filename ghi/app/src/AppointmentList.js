@@ -18,8 +18,26 @@ function AppointmentList() {
 
   const handleDeleteModel = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`http://localhost:8080/api/technicians/${id}/`, {
+      fetch(`http://localhost:8080/api/appointments/${id}/`, {
         method: "DELETE",
+      }).then(() => {
+        window.location.reload();
+      });
+    }
+  };
+  const handleCancelModel = (id) => {
+    if (window.confirm("Are you sure you want to cancel?")) {
+      fetch(`http://localhost:8080/api/appointments/${id}/`, {
+        method: "PUT",
+      }).then(() => {
+        window.location.reload();
+      });
+    }
+  };
+  const handleFinishModel = (id) => {
+    if (window.confirm("Is service complete?")) {
+      fetch(`http://localhost:8080/api/appointments/${id}/`, {
+        method: "PUT",
       }).then(() => {
         window.location.reload();
       });
@@ -58,6 +76,20 @@ function AppointmentList() {
                     }}
                   >
                     Delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleCancelModel(appointment.id);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleFinishModel(appointment.id);
+                    }}
+                  >
+                    Finish
                   </button>
                 </td>
               </tr>

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-function SalespersonHistory() {
-  const [salespeople, setSalespeople] = useState([]);
-  const [selectedSalesperson, setSelectedSalesperson] = useState("");
-  const [salespersonData, setSalespersonData] = useState(null);
+function ServiceHistory() {
+  const [servicehistory, setServiceHistory] = useState([]);
+  const [selectedservice, setSelectedService] = useState("");
+  const [servicedata, setServiceData] = useState(null);
 
   const fetchData = async () => {
-    const url = "http://localhost:8090/api/salespeople/";
+    const url = "http://localhost:8080/api/servicehistory/";
 
     const response = await fetch(url);
 
     if (response.ok) {
       const data = await response.json();
-      setSalespeople(data.salespeople);
+      setServiceHistory(data.servicehistory);
     }
   };
 
@@ -20,54 +20,61 @@ function SalespersonHistory() {
     fetchData();
   }, []);
 
-  const handleSalespersonChange = (event) => {
+  const handleServiceHistoryChange = (event) => {
     const value = event.target.value;
-    setSelectedSalesperson(value);
+    setSelectedService(value);
 
-    const selectedSalespersonData = salespeople.find(
-      (salesperson) => salesperson.id === value
+    const selectedserviceData = servicehistory.find(
+      (servicehistory) => servicehistory.id === value
     );
-    setSalespersonData(selectedSalespersonData);
+    setServiceData(selectedserviceData);
   };
 
   return (
     <div>
-      <h1>Salesperson History</h1>
+      <h1>Service History</h1>
       <select
-        onChange={handleSalespersonChange}
+        onChange={handleServiceHistoryChange}
         required
-        id="salesperson"
-        name="salesperson"
-        value={selectedSalesperson}
+        id="servicehistory"
+        name="servicehistory"
+        value={selectedservice}
         className="form-select"
       >
         <option value="">Select a salesperson</option>
-        {salespeople.map((salesperson) => {
+        {servicehistory.map((servicehistory) => {
           return (
-            <option key={salesperson.id} value={salesperson.id}>
-              {salesperson.first_name} {salesperson.last_name}
+            <option key={servicehistory.id} value={servicehistory.id}>
+              {servicehistory.customer} {servicehistory.last_name}
             </option>
           );
         })}
       </select>
-      {salespersonData ? (
+      {servicedata ? (
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Salesperson</th>
-              <th>Customer</th>
               <th>VIN</th>
-              <th>Price</th>
+              <th>Is VIP?</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Technician</th>
+              <th>Reason</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr key={salespersonData.id}>
+            <tr key={servicedata.id}>
+              <td>{servicedata.vin}</td>
+              <td>{servicedata.customer}</td>
               <td>
-                {salespersonData.first_name} {salespersonData.last_name}
+                {servicedata.first_name} {servicedata.last_name}
               </td>
-              <td>{salespersonData.customer}</td>
-              <td>{salespersonData.vin}</td>
-              <td>${salespersonData.price}</td>
+              <td>{servicedata.date_time}</td>
+              <td>{servicedata.technician}</td>
+              <td>{servicedata.reason}</td>
+              <td>{servicedata.status}</td>
             </tr>
           </tbody>
         </table>
@@ -76,4 +83,4 @@ function SalespersonHistory() {
   );
 }
 
-export default SalespersonHistory;
+export default ServiceHistory;

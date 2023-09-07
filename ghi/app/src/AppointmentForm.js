@@ -176,7 +176,7 @@ function AppointmentForm() {
               />
               <label htmlFor="city">Customer Name...</label>
             </div>
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <select
                 onChange={handleTechnicianChange}
                 required
@@ -194,7 +194,7 @@ function AppointmentForm() {
                   );
                 })}
               </select>
-            </div> */}
+            </div>
             <button className="btn btn-primary">Create</button>
           </form>
         </div>
