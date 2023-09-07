@@ -43,6 +43,7 @@ def list_appointments(request):
             safe=False,
         )
 
+
 @require_http_methods(["DELETE", "GET", "PUT"])
 def show_appointments(request, id):
     if request.method == "GET":

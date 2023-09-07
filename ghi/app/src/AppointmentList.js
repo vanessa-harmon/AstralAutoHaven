@@ -62,12 +62,13 @@ function AppointmentList() {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((appointment) => {
+          {console.log(appointments)}
+          {appointments?.map(appointment => {
             return (
               <tr key={appointment.vin}>
                 <td>{appointment.customer}</td>
                 <td>{appointment.date_time}</td>
-                <td>{appointment.technician}</td>
+                <td>{appointment.technician.employee_id}</td>
                 <td>{appointment.reason}</td>
                 <td>
                   <button

@@ -68,6 +68,9 @@ function App() {
           <Route path="appointments">
             <Route path="" element={<AppointmentList />} />
             <Route path="create" element={<AppointmentForm />} />
+          </Route>
+
+          <Route path="service">
             <Route path="history" element={<ServiceHistory />} />
           </Route>
         </Routes>

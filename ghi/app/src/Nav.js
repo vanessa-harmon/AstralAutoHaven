@@ -65,7 +65,7 @@ function Nav() {
               <NavLink className="nav-link" to="/appointments/create">Create an Appointment</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/servicehistory">Service History</NavLink>
+              <NavLink className="nav-link" to="/service/history">Service History</NavLink>
             </li>
           </ul>
           </div>

@@ -1,86 +1,72 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceHistory() {
-  const [servicehistory, setServiceHistory] = useState([]);
-  const [selectedservice, setSelectedService] = useState("");
-  const [servicedata, setServiceData] = useState(null);
+    const [appointments, setAppointment] = useState([]);
+    const [vin, setVin] = useState('')
 
-  const fetchData = async () => {
-    const url = "http://localhost:8080/api/servicehistory/";
+    const AutomobileVoData = async () => {
+      const url = "http://localhost:8080/api/automobiles/"
+      const response = await fetch(url)
 
-    const response = await fetch(url);
-
-    if (response.ok) {
-      const data = await response.json();
-      setServiceHistory(data.servicehistory);
+      if (response.ok) {
+        const data = await response.json()
+        let sold = []
+        for (const automobile of data.automobiles) {
+          if (automobile.sold === true) {
+            sold.push(automobile.vin)
+          }
+        }
+        setVin(sold)
+      }
     }
-  };
+    const vip = (vinNumber) => (vin.includes(vinNumber) ? 'yes :)' : 'no :(')
+    const fetchData = async () => {
+      const url = "http://localhost:8080/api/service/history/"
+      const response = await fetch(url)
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+      if (response.ok) {
+        const data = await response.json()
+        setAppointment(data)
+      }
+    }
+    useEffect(() => {
+      fetchData()
+    }, [])
 
-  const handleServiceHistoryChange = (event) => {
-    const value = event.target.value;
-    setSelectedService(value);
-
-    const selectedserviceData = servicehistory.find(
-      (servicehistory) => servicehistory.id === value
+    return (
+      <table className="table table-hover table-striped border border-5">
+        <thead>
+          <tr>
+            <th className="text-center">Date Time</th>
+            <th className="text-center">Customer</th>
+            <th className="text-center">VIN</th>
+            <th className="text-center">Reason</th>
+            <th className="text-center">Status</th>
+            <th className="text-center">Technician</th>
+            <th className="text-center">VIP</th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointments.appointments?.map((appointment) => {
+            return (
+              <tr key={appointment.id}>
+                <td className="text-center">{appointment.date_time}</td>
+                <td className="text-center">{appointment.customer}</td>
+                <td className="text-center">{appointment.vin}</td>
+                <td className="text-center">{appointment.reason}</td>
+                <td className="text-center">{appointment.status}</td>
+                <td className="text-center">
+                  {appointment.technician.first_name}{" "}
+                  {appointment.technician.last_name}
+                </td>
+                <td className="text-center">{vip(appointment.vin)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     );
-    setServiceData(selectedserviceData);
-  };
 
-  return (
-    <div>
-      <h1>Service History</h1>
-      <select
-        onChange={handleServiceHistoryChange}
-        required
-        id="servicehistory"
-        name="servicehistory"
-        value={selectedservice}
-        className="form-select"
-      >
-        <option value="">Select a salesperson</option>
-        {servicehistory.map((servicehistory) => {
-          return (
-            <option key={servicehistory.id} value={servicehistory.id}>
-              {servicehistory.customer} {servicehistory.last_name}
-            </option>
-          );
-        })}
-      </select>
-      {servicedata ? (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>VIN</th>
-              <th>Is VIP?</th>
-              <th>Customer</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Technician</th>
-              <th>Reason</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr key={servicedata.id}>
-              <td>{servicedata.vin}</td>
-              <td>{servicedata.customer}</td>
-              <td>
-                {servicedata.first_name} {servicedata.last_name}
-              </td>
-              <td>{servicedata.date_time}</td>
-              <td>{servicedata.technician}</td>
-              <td>{servicedata.reason}</td>
-              <td>{servicedata.status}</td>
-            </tr>
-          </tbody>
-        </table>
-      ) : null}
-    </div>
-  );
-}
+  }
 
 export default ServiceHistory;

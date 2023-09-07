@@ -21,7 +21,7 @@ class Appointment(models.Model):
     vin = models.CharField(max_length=200)
     customer = models.CharField(max_length=200)
     technician = models.ForeignKey(
-        "AutomobileVO",
-        related_name="vehicles",
+        "Technician",
+        related_name="technician",
         on_delete=models.CASCADE
     )
