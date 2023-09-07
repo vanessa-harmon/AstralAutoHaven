@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
-from .models import Salesperson, Customer, Sale
+from .models import Salesperson, Customer, Sale, AutomobileVO
 from .encoders import SalespersonEncoder, CustomerEncoder, SaleEncoder
 
 
@@ -108,13 +108,33 @@ def sales_list(request):
             safe=False,
         )
     else:
-        content = json.loads(request.body)
-        sale = Sale.objects.create(**content)
-        return JsonResponse(
-            sale,
-            encoder=SaleEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            automobile_id = content["automobile_id"]
+            salesperson_id = content["salesperson_id"]
+            customer_id = content["customer_id"]
+
+            automobile = AutomobileVO.objects.get(id=automobile_id)
+            salesperson = Salesperson.objects.get(id=salesperson_id)
+            customer = Customer.objects.get(id=customer_id)
+
+            content["automobile"] = automobile
+            content["salesperson"] = salesperson
+            content["customer"] = customer
+
+            sale = Sale.objects.create(**content)
+            print(sale.price)
+            return JsonResponse(
+                sale,
+                encoder=SaleEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create the sale"}
+            )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
