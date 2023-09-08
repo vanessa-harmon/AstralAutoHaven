@@ -82,11 +82,13 @@ def show_customer(request, id):
         )
 
     elif request.method == "DELETE":
-        try:
             count, _ = Customer.objects.filter(id=id).delete()
-            return JsonResponse({"deleted": count > 0})
-        except Customer.DoesNotExist:
-            return JsonResponse({"Customer does not exist"}, status=404)
+            if count > 0:
+                return JsonResponse({"deleted": "true"})
+            else:
+                return JsonResponse(
+                    {"error": "Customer does not exist"},
+                    status=404)
 
     else:
         content = json.loads(request.body)
@@ -113,11 +115,11 @@ def sales_list(request):
     else:
         try:
             content = json.loads(request.body)
-            automobile_id = content["automobile_id"]
-            salesperson_id = content["salesperson_id"]
-            customer_id = content["customer_id"]
+            automobile_vin = content["automobile"]
+            salesperson_id = content["salesperson"]
+            customer_id = content["customer"]
 
-            automobile = AutomobileVO.objects.get(id=automobile_id)
+            automobile = AutomobileVO.objects.get(vin=automobile_vin)
             salesperson = Salesperson.objects.get(id=salesperson_id)
             customer = Customer.objects.get(id=customer_id)
 
@@ -152,7 +154,13 @@ def show_sale(request, id):
 
     elif request.method == "DELETE":
         count, _ = Sale.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        if count > 0:
+            return JsonResponse({"deleted": "true"})
+        else:
+            return JsonResponse(
+                {"error": "Sale id does not exist"},
+                status=404
+            )
 
     else:
         content = json.loads(request.body)
