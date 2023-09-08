@@ -82,8 +82,11 @@ def show_customer(request, id):
         )
 
     elif request.method == "DELETE":
-        count, _ = Customer.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        try:
+            count, _ = Customer.objects.filter(id=id).delete()
+            return JsonResponse({"deleted": count > 0})
+        except Customer.DoesNotExist:
+            return JsonResponse({"Customer does not exist"}, status=404)
 
     else:
         content = json.loads(request.body)

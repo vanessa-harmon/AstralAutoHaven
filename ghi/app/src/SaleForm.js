@@ -42,6 +42,29 @@ function SaleForm() {
     } catch (error) {
       console.error('An error occurred during the fetch:', error)
     }
+
+    const autoUrl = "http://localhost:8100/api/automobiles/"
+
+    const updateConfig = {
+      method: "put",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const autoResponse = await fetch(autoUrl, updateConfig);
+      if (autoResponse.ok) {
+        // send request to inventory
+      } else {
+      console.error('Failed to update:', autoResponse.statusText)
+      }
+    } catch (error) {
+      console.error('An error occurred during the update:', error)
+    }
+
+
     };
 
   const handleAutomobileChange = (event) => {
