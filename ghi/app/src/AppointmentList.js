@@ -27,7 +27,7 @@ function AppointmentList() {
   };
   const handleCancelModel = (id) => {
     if (window.confirm("Are you sure you want to cancel?")) {
-      fetch(`http://localhost:8080/api/appointments/${id}/`, {
+      fetch(`http://localhost:8080/api/appointments/${id}/cancel/`, {
         method: "PUT",
         body: JSON.stringify({status: "canceled"})
       }).then(() => {
@@ -68,10 +68,10 @@ function AppointmentList() {
             return (
               <tr key={appointment.vin}>
                 <td>{appointment.vin}</td>
-                <td></td>
+                <td>{appointment.vip}</td>
                 <td>{appointment.customer}</td>
                 <td>{appointment.date_time}</td>
-                <td>{appointment.date_time}</td>
+                <td>{appointment.time_day}</td>
                 <td>{appointment.technician.employee_id}</td>
                 <td>{appointment.reason}</td>
                 <td>

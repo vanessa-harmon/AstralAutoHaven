@@ -6,6 +6,7 @@ function AppointmentForm() {
     const data = {};
 
     data.date_time = date_time;
+    data.time_day = time_day;
     data.reason = reason;
     data.vin = vin;
     data.customer = customer;
@@ -23,6 +24,7 @@ function AppointmentForm() {
     const response = await fetch(appointmentsUrl, fetchConfig);
     if (response.ok) {
       setDateTime("");
+      setTimeDay("")
       setReason("");
       setVin("");
       setCustomer("");
@@ -36,12 +38,11 @@ function AppointmentForm() {
     setDateTime(value);
   };
 
-  const [date_times, setDateTimes] = useState("");
-  const handleDateTimesChange = (event) => {
+  const [time_day, setTimeDay] = useState("");
+  const handleTimeDayChange = (event) => {
     const value = event.target.value;
-    setDateTimes(value);
+    setTimeDay(value);
   };
-
 
   const [reason, setReason] = useState("");
   const handleReasonChange = (event) => {
@@ -105,11 +106,11 @@ function AppointmentForm() {
             </div>
             <div className="form-floating mb-3">
               <input
-                onChange={handleDateTimesChange}
+                onChange={handleTimeDayChange}
                 placeholder="Time"
                 required
                 type="time"
-                value={date_times}
+                value={time_day}
                 name="date_time"
                 id="date_time"
                 className="form-control"

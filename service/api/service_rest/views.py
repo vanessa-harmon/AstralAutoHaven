@@ -69,7 +69,6 @@ def show_appointments(request, id):
         return JsonResponse({"deleted": count > 0})
 
     else:
-        
         content = json.loads(request.body)
         Appointment.objects.filter(id=id).update(**content)
 
@@ -104,3 +103,5 @@ def show_technicians(request, id):
             encoder=TechnicianEncoder,
             safe=False,
         )
+
+
