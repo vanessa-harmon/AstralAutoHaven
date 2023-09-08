@@ -8,7 +8,7 @@ function AppointmentList() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setAppointment(data.appointments);
+      setAppointment(data.appointment);
     }
   };
 
@@ -62,11 +62,13 @@ function AppointmentList() {
           </tr>
         </thead>
         <tbody>
-          {console.log(appointments)}
           {appointments?.map(appointment => {
             return (
               <tr key={appointment.vin}>
+                <td>{appointment.vin}</td>
+                <td></td>
                 <td>{appointment.customer}</td>
+                <td>{appointment.date_time}</td>
                 <td>{appointment.date_time}</td>
                 <td>{appointment.technician.employee_id}</td>
                 <td>{appointment.reason}</td>
@@ -93,6 +95,7 @@ function AppointmentList() {
                     Finish
                   </button>
                 </td>
+
               </tr>
             );
           })}

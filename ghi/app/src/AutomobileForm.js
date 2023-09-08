@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 function AutomobileForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = {};
+    
     data.color = color;
     data.year = year;
     data.vin = vin;

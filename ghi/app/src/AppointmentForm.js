@@ -10,10 +10,9 @@ function AppointmentForm() {
     data.status = status;
     data.vin = vin;
     data.customer = customer;
-    data.technician = technician;
+    data.technician_id = technician;
 
-    const techniciansUrl = "http://localhost:8080/api/appointments/";
-
+    const appointmentsUrl = "http://localhost:8080/api/appointments/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -21,7 +20,8 @@ function AppointmentForm() {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(techniciansUrl, fetchConfig);
+
+    const response = await fetch(appointmentsUrl, fetchConfig);
     if (response.ok) {
       setDateTime("");
       setReason("");
@@ -96,7 +96,7 @@ function AppointmentForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create an appointment</h1>
+          <h1>Create an Appointment</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input
@@ -195,7 +195,7 @@ function AppointmentForm() {
                 })}
               </select>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button onClick={handleSubmit} className="btn btn-primary">Create</button>
           </form>
         </div>
       </div>

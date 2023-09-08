@@ -35,13 +35,24 @@ def list_appointments(request):
             safe=False,
         )
     else:
-        content = json.loads(request.body)
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            technician_id = content["technician_id"]
+
+            technician = Technician.objects.get(id=technician_id)
+            content["technician"] = technician
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create appointment"}
+            )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
