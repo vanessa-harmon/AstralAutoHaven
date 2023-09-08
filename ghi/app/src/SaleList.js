@@ -51,7 +51,7 @@ function SaleList() {
                 <td>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>
                 <td>{sale.customer.first_name} {sale.customer.last_name}</td>
                 <td>{sale.automobile.vin}</td>
-                <td>${sale.price}</td>
+                <td>${sale.price}.00</td>
                 <td><button onClick={() => {handleDeleteSale(sale.id)}}>Delete</button></td>
               </tr>
             );
