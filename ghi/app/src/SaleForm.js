@@ -20,7 +20,7 @@ function SaleForm() {
     data.price = price;
 
     const saleUrl = "http://localhost:8090/api/sales/";
-    console.log(saleUrl)
+
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -28,7 +28,6 @@ function SaleForm() {
         "Content-Type": "application/json",
       },
     };
-    console.log("fetchConfig:", fetchConfig)
 
     try {
       const response = await fetch(saleUrl, fetchConfig);
@@ -69,7 +68,8 @@ function SaleForm() {
 
     if (autoResponse.ok) {
       const data = await autoResponse.json();
-      setAutomobiles(data.autos);
+      const unsoldAutomobiles = data.autos.filter((automobile) => !automobile.sold);
+      setAutomobiles(unsoldAutomobiles);
     }
 
     const salespersonUrl = "http://localhost:8090/api/salespeople/";

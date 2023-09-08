@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 function SalespersonHistory() {
   const [salespeople, setSalespeople] = useState([]);
   const [selectedSalesperson, setSelectedSalesperson] = useState("");
-  const [salespersonData, setSalespersonData] = useState(null);
+  const [salespersonSales, setSalespersonSales] = useState([]);
 
   const fetchData = async () => {
     const url = "http://localhost:8090/api/salespeople/";
-
     const response = await fetch(url);
 
     if (response.ok) {
@@ -20,16 +19,16 @@ function SalespersonHistory() {
     fetchData();
   }, []);
 
-
   const handleSalespersonChange = (event) => {
     const value = event.target.value;
     setSelectedSalesperson(value);
 
-    const selectedSalespersonData = salespeople.find(
-        (salesperson) => salesperson.id === value
+    const selectedSalespersonSales = salespersonSales.filter(
+      (sale) => sale.salesperson.id === value
     );
-    setSalespersonData(selectedSalespersonData)
+    setSalespersonSales(selectedSalespersonSales);
   };
+
 
   return (
     <div>
@@ -51,28 +50,28 @@ function SalespersonHistory() {
           );
         })}
       </select>
-        {salespersonData ? (
-            <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Salesperson</th>
-                <th>Customer</th>
-                <th>VIN</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr key={salespersonData.id}>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Salesperson</th>
+              <th>Customer</th>
+              <th>VIN</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {salespersonSales.map(sale => (
+              <tr key={sale.id}>
                 <td>
-                  {salespersonData.first_name} {salespersonData.last_name}
+                  {sale.salesperson.first_name} {sale.salesperson.last_name}
                 </td>
-                <td>{salespersonData.customer}</td>
-                <td>{salespersonData.vin}</td>
-                <td>${salespersonData.price}</td>
+                <td>{sale.customer.first_name} {sale.customer.last_name}</td>
+                <td>{sale.automobile.vin}</td>
+                <td>${sale.price}</td>
               </tr>
-            </tbody>
-          </table>
-        ) : null}
+            ))}
+          </tbody>
+        </table>
     </div>
   );
 }
