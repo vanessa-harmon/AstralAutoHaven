@@ -9,7 +9,10 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+        <div className="d-flex flex-column">
+          <ul className="navbar-nav me-auto mb-5 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
             </li>
@@ -39,7 +42,7 @@ function Nav() {
             </li>
           </ul>
 
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" to="customers/create">Add a Customer</NavLink>
             </li>
@@ -68,6 +71,8 @@ function Nav() {
               <NavLink className="nav-link" to="/service/history">Service History</NavLink>
             </li>
           </ul>
+        </div>
+
           </div>
         </div>
     </nav>

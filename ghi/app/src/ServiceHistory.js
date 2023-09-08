@@ -5,38 +5,7 @@ function ServiceHistory() {
     //const [selectedAppointment, setselectedAppointment] = useState([])
     const [selectedvin, setSelectedVin] = useState('')
 
-      if (response.ok) {
-        const data = await response.json()
-        let sold = []
-        for (const automobile of data.automobiles) {
-          if (automobile.sold === true) {
-            sold.push(automobile.vin)
-          }
-        }
-        setVin(sold)
-      }
-    }
-    const vip = (vinNumber) => (vin.includes(vinNumber) ? 'yes :)' : 'no :(')
-    const fetchData = async () => {
-      const url = "http://localhost:8080/api/service/history/"
-      const response = await fetch(url)
-
-    const fetchData = async () => {
-      const salespeopleUrl = "http://localhost:8090/api/appointments/";
-      const response = await fetch(salespeopleUrl);
-
-      const salesUrl = "http://localhost:8090/api/sales/";
-      const salesResponse = await fetch(salesUrl);
-
-      if (response.ok) {
-        const data = await response.json()
-        setAppointment(data)
-      }
-    }
-    useEffect(() => {
-      fetchData()
-    }, [])
-
+      
     return (
       <table className="table table-hover table-striped border border-5">
         <thead>

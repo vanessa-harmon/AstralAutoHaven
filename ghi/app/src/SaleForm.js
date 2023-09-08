@@ -43,7 +43,7 @@ function SaleForm() {
       console.error('An error occurred during the fetch:', error)
     }
 
-    const autoUrl = "http://localhost:8100/api/automobiles/"
+    const autoUrl = "http://localhost:8100/api/automobiles/{vin}"
 
     const updateConfig = {
       method: "put",
@@ -55,16 +55,12 @@ function SaleForm() {
 
     try {
       const autoResponse = await fetch(autoUrl, updateConfig);
-      if (autoResponse.ok) {
-        // send request to inventory http://localhost:8100/api/automobiles/ & update autos.sold to true
-      } else {
-      console.error('Failed to update:', autoResponse.statusText)
+      if (!autoResponse.ok) {
+        console.error('Failed to update:', autoResponse.statusText)
       }
     } catch (error) {
       console.error('An error occurred during the update:', error)
     }
-
-
     };
 
   const handleAutomobileChange = (event) => {
