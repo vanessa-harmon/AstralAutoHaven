@@ -47,7 +47,7 @@ function SaleForm() {
 
     const updateConfig = {
       method: "put",
-      body: JSON.stringify(data),
+      body: JSON.stringify({ sold : true }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,7 +56,7 @@ function SaleForm() {
     try {
       const autoResponse = await fetch(autoUrl, updateConfig);
       if (autoResponse.ok) {
-        // send request to inventory
+        // send request to inventory http://localhost:8100/api/automobiles/ & update autos.sold to true
       } else {
       console.error('Failed to update:', autoResponse.statusText)
       }
