@@ -14,7 +14,7 @@ function SaleForm() {
     event.preventDefault();
 
     const data = {};
-    data.automobile_id = automobile;
+    data.automobile = automobile;
     data.salesperson_id = salesperson;
     data.customer_id = customer;
     data.price = price;
@@ -32,40 +32,39 @@ function SaleForm() {
     try {
       const response = await fetch(saleUrl, fetchConfig);
       if (response.ok) {
+
+        const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`
+
+        const updateConfig = {
+          method: "put",
+          body: JSON.stringify({ sold : true }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        try {
+          const autoResponse = await fetch(autoUrl, updateConfig);
+          if (!autoResponse.ok) {
+            console.error('Failed to update:', autoResponse.statusText)
+          }
+        } catch (error) {
+          console.error('An error occurred during the update:', error)
+        }
+
         setAutomobile("");
         setSalesperson("");
         setCustomer("");
         setPrice("");
-      } else {
-      console.error('Failed to fetch:', response.statusText)
-      }
-    } catch (error) {
+    }
+  }
+    catch (error) {
       console.error('An error occurred during the fetch:', error)
     }
-
-    const autoUrl = "http://localhost:8100/api/automobiles/"
-
-    const updateConfig = {
-      method: "put",
-      body: JSON.stringify({ sold : true }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    try {
-      const autoResponse = await fetch(autoUrl, updateConfig);
-      if (autoResponse.ok) {
-        // send request to inventory http://localhost:8100/api/automobiles/ & update autos.sold to true
-      } else {
-      console.error('Failed to update:', autoResponse.statusText)
-      }
-    } catch (error) {
-      console.error('An error occurred during the update:', error)
-    }
+  }
 
 
-    };
+
 
   const handleAutomobileChange = (event) => {
     const value = event.target.value;
@@ -137,7 +136,7 @@ function SaleForm() {
                 <option value="">Choose an autombile VIN...</option>
                 {autos.map((automobile) => {
                   return (
-                    <option key={automobile.id} value={automobile.id}>
+                    <option key={automobile.vin} value={automobile.vin}>
                       {automobile.vin}
                     </option>
                   );

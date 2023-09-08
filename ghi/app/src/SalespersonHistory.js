@@ -61,17 +61,17 @@ function SalespersonHistory() {
         </select>
       </div>
       <div>
-        {salespersonSales.map((sale) => (
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Salesperson</th>
-                <th>Customer</th>
-                <th>VIN</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Salesperson</th>
+              <th>Customer</th>
+              <th>VIN</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {salespersonSales.map((sale) => (
               <tr key={sale.id}>
                 <td>
                   {sale.salesperson.first_name} {sale.salesperson.last_name}
@@ -82,9 +82,9 @@ function SalespersonHistory() {
                 <td>{sale.automobile.vin}</td>
                 <td>${sale.price}.00</td>
               </tr>
-            </tbody>
-          </table>
-        ))}
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
