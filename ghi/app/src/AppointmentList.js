@@ -39,6 +39,7 @@ function AppointmentList() {
     if (window.confirm("Is service complete?")) {
       fetch(`http://localhost:8080/api/appointments/${id}/`, {
         method: "PUT",
+        body: JSON.stringify({ status: "finished" }),
       }).then(() => {
         window.location.reload();
       });
@@ -76,13 +77,6 @@ function AppointmentList() {
                 <td>
                   <button
                     onClick={() => {
-                      handleDeleteModel(appointment.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => {
                       handleCancelModel(appointment.id);
                     }}
                   >
@@ -96,7 +90,6 @@ function AppointmentList() {
                     Finish
                   </button>
                 </td>
-
               </tr>
             );
           })}

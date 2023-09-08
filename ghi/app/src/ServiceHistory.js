@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceHistory() {
-    const [appointments, setAppointment] = useState([]);
-    const [vin, setVin] = useState('')
-
-    const AutomobileVoData = async () => {
-      const url = "http://localhost:8080/api/automobiles/"
-      const response = await fetch(url)
+    const [appointment, setAppointment] = useState([]);
+    //const [selectedAppointment, setselectedAppointment] = useState([])
+    const [selectedvin, setSelectedVin] = useState('')
 
       if (response.ok) {
         const data = await response.json()
@@ -23,6 +20,13 @@ function ServiceHistory() {
     const fetchData = async () => {
       const url = "http://localhost:8080/api/service/history/"
       const response = await fetch(url)
+
+    const fetchData = async () => {
+      const salespeopleUrl = "http://localhost:8090/api/appointments/";
+      const response = await fetch(salespeopleUrl);
+
+      const salesUrl = "http://localhost:8090/api/sales/";
+      const salesResponse = await fetch(salesUrl);
 
       if (response.ok) {
         const data = await response.json()

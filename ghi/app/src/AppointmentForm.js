@@ -7,7 +7,6 @@ function AppointmentForm() {
 
     data.date_time = date_time;
     data.reason = reason;
-    data.status = status;
     data.vin = vin;
     data.customer = customer;
     data.technician_id = technician;
@@ -25,7 +24,6 @@ function AppointmentForm() {
     if (response.ok) {
       setDateTime("");
       setReason("");
-      setStatus("");
       setVin("");
       setCustomer("");
       setTechnician("");
@@ -49,12 +47,6 @@ function AppointmentForm() {
   const handleReasonChange = (event) => {
     const value = event.target.value;
     setReason(value);
-  };
-
-  const [status, setStatus] = useState("");
-  const handleStatusChange = (event) => {
-    const value = event.target.value;
-    setStatus(value);
   };
 
   const [vin, setVin] = useState("");
@@ -136,19 +128,6 @@ function AppointmentForm() {
                 className="form-control"
               />
               <label htmlFor="city">Reason for visit...</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleStatusChange}
-                placeholder="Status"
-                required
-                type="text"
-                value={status}
-                name="status"
-                id="status"
-                className="form-control"
-              />
-              <label htmlFor="city">Status...</label>
             </div>
             <div className="form-floating mb-3">
               <input
