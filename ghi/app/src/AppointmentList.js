@@ -29,6 +29,7 @@ function AppointmentList() {
     if (window.confirm("Are you sure you want to cancel?")) {
       fetch(`http://localhost:8080/api/appointments/${id}/`, {
         method: "PUT",
+        body: JSON.stringify({status: "canceled"})
       }).then(() => {
         window.location.reload();
       });

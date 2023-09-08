@@ -50,7 +50,7 @@ function ServiceHistory() {
           {appointments.appointments?.map((appointment) => {
             return (
               <tr key={appointment.id}>
-                <td className="text-center">{appointment.date_time}</td>
+                <td>{appointment.date_time}</td>
                 <td className="text-center">{appointment.customer}</td>
                 <td className="text-center">{appointment.vin}</td>
                 <td className="text-center">{appointment.reason}</td>
