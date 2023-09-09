@@ -28,7 +28,7 @@ function AutomobileList() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Automobiles</h1>
       </div>
       <table className="table table-striped">
@@ -53,7 +53,8 @@ function AutomobileList() {
                 <td>{automobile.model.manufacturer.name}</td>
                 <td>{automobile.sold ? 'Yes' : 'No'}</td>
                 <td>
-                  <button onClick={() => {handleDeleteAutomobile(automobile.vin)}}>Delete</button>
+                  <button onClick={() => {handleDeleteAutomobile(automobile.vin)}}
+                  className="btn btn-outline-dark btn-sm">Delete</button>
                 </td>
               </tr>
             );

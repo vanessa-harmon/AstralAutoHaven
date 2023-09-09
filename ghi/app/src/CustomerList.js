@@ -30,7 +30,7 @@ function CustomerList() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Customers</h1>
       </div>
       <table className="table table-striped">
@@ -50,7 +50,9 @@ function CustomerList() {
                 <td>{customer.last_name}</td>
                 <td>{customer.phone_number}</td>
                 <td>{customer.address}</td>
-                <td><button onClick={() => {handleDeleteCustomer(customer.id)}}>Delete</button></td>
+                <td><button onClick={() => {handleDeleteCustomer(customer.id)}}
+                className="btn-close float-right"
+                aria-label="Close"></button></td>
               </tr>
             );
           })}

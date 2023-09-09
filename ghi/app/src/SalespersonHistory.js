@@ -40,7 +40,7 @@ function SalespersonHistory() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Salesperson History</h1>
         <select
           onChange={handleSalespersonChange}
@@ -60,7 +60,7 @@ function SalespersonHistory() {
           })}
         </select>
       </div>
-      <div>
+      <div className="mt-4">
         <table className="table table-striped">
           <thead>
             <tr>
