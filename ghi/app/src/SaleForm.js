@@ -15,8 +15,8 @@ function SaleForm() {
 
     const data = {};
     data.automobile = automobile;
-    data.salesperson_id = salesperson;
-    data.customer_id = customer;
+    data.salesperson = salesperson;
+    data.customer = customer;
     data.price = price;
 
     const saleUrl = "http://localhost:8090/api/sales/";

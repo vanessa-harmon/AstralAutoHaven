@@ -22,17 +22,17 @@ class AutomobileVO(models.Model):
 
 class Sale(models.Model):
     automobile = models.ForeignKey(
-        "AutomobileVO",
+        AutomobileVO,
         related_name="automobile",
         on_delete=models.CASCADE
     )
     salesperson = models.ForeignKey(
-        "Salesperson",
+        Salesperson,
         related_name="salesperson",
         on_delete=models.CASCADE
     )
     customer = models.ForeignKey(
-        "Customer",
+        Customer,
         related_name="customer",
         on_delete=models.CASCADE
     )

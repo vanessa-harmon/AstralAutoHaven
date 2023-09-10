@@ -115,6 +115,7 @@ def sales_list(request):
     else:
         try:
             content = json.loads(request.body)
+            print(content)
             automobile_vin = content["automobile"]
             salesperson_id = content["salesperson"]
             customer_id = content["customer"]
@@ -128,7 +129,6 @@ def sales_list(request):
             content["customer"] = customer
 
             sale = Sale.objects.create(**content)
-            print(sale.price)
             return JsonResponse(
                 sale,
                 encoder=SaleEncoder,

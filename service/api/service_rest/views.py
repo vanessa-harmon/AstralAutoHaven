@@ -103,5 +103,3 @@ def show_technicians(request, id):
             encoder=TechnicianEncoder,
             safe=False,
         )
-
-
