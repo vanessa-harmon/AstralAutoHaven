@@ -13,7 +13,7 @@ Technician model: represents the technician handling the service appointment
 Appointment model: represents a service appointment from a customer
 AutomobileVO model is used to fetch automobile info from the Inventory microservice.
 
-The Service functionality needs to keep track of service appointments for automobiles
+The Service functionality keeps track of service appointments for automobiles.
 and their owners
 
 ## Sales microservice
