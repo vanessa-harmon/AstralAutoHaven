@@ -83,7 +83,7 @@ const vinChange = (vin) => {
         <tbody>
           {filteredappointments.map(appointment => {
             return (
-              <tr key={appointment.vin}>
+              <tr key={appointment.id}>
                 <td>{appointment.vin}</td>
                 <td>{vinChange(appointment.vin)}</td>
                 <td>{appointment.customer}</td>
