@@ -51,6 +51,7 @@ function TechnicianList() {
                     onClick={() => {
                       handleDeleteModel(technician.id);
                     }}
+                    class="btn btn-danger"
                   >
                     Delete
                   </button>

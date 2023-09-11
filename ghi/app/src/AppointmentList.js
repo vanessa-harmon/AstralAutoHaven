@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function AppointmentList() {
   const [appointments, setAppointment] = useState([]);
+  const [vip, setVip] = useState([])
   const filteredappointments = appointments.filter(appointment=> appointment.status === 'created')
 
   const fetchData = async () => {
@@ -21,7 +22,7 @@ function AppointmentList() {
     if (window.confirm("Are you sure you want to cancel?")) {
       fetch(`http://localhost:8080/api/appointments/${id}/`, {
         method: "PUT",
-        body: JSON.stringify({status: "canceled"})
+        body: JSON.stringify({status: "Canceled"})
       }).then(() => {
         window.location.reload();
       });
@@ -32,12 +33,35 @@ function AppointmentList() {
     if (window.confirm("Is service complete?")) {
       fetch(`http://localhost:8080/api/appointments/${id}/`, {
         method: "PUT",
-        body: JSON.stringify({ status: "finished" }),
+        body: JSON.stringify({ status: "Finished" }),
       }).then(() => {
         window.location.reload();
       });
     }
   };
+
+  const fetchAutomobiles = async () => {
+    const url = "http://localhost:8100/api/automobiles/";
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      const vinList = []
+      data.autos.map((cars) => vinList.push(cars.vin))
+    setVip(vinList);
+    }
+  };
+
+  useEffect(() => {
+    fetchAutomobiles();
+  }, []);
+
+const vinChange = (vin) => {
+  if (vip.includes(vin)) {
+    return "Yes";
+  }else{
+    return "No";
+  }
+};
 
   return (
     <div>
@@ -61,7 +85,7 @@ function AppointmentList() {
             return (
               <tr key={appointment.vin}>
                 <td>{appointment.vin}</td>
-                <td>{appointment.vip ? "Yes" : "No"}</td>
+                <td>{vinChange(appointment.vin)}</td>
                 <td>{appointment.customer}</td>
                 <td>{appointment.date_time}</td>
                 <td>{appointment.time_day}</td>
@@ -72,6 +96,7 @@ function AppointmentList() {
                     onClick={() => {
                       handleCancelModel(appointment.id);
                     }}
+                    className="btn btn-danger"
                   >
                     Cancel
                   </button>
@@ -79,6 +104,7 @@ function AppointmentList() {
                     onClick={() => {
                       handleFinishModel(appointment.id);
                     }}
+                    class="btn btn-success"
                   >
                     Finish
                   </button>
