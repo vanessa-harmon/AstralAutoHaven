@@ -21,6 +21,7 @@ class AppointmentEncoder(ModelEncoder):
       "reason",
       "status",
       "vin",
+      "vip",
       "customer",
       "technician",
     ]

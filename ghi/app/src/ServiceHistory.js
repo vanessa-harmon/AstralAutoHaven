@@ -1,44 +1,67 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceHistory() {
-    const [appointment, setAppointment] = useState([]);
-    //const [selectedAppointment, setselectedAppointment] = useState([])
-    const [selectedvin, setSelectedVin] = useState('')
+    const [appointments, setAppointments] = useState([]);
+    const [search, setSearch] = useState('');
+    const fetchData = async () => {
+      const url = "http://localhost:8080/api/appointments/";
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        setAppointments(data.appointment);
+      }
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
 
     return (
-      <table className="table table-hover table-striped border border-5">
+    <div>
+      <div>
+        <h1>Service History</h1>
+      </div>
+        <form>
+          <input className='my-3' onChange={(e) => setSearch(e.target.value)}
+
+            placeholder='Search Vin'>
+          </input>
+        </form>
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Date Time</th>
-            <th>Customer</th>
             <th>VIN</th>
+            <th>Is VIP?</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Technician</th>
             <th>Reason</th>
             <th>Status</th>
-            <th>Technician</th>
-            <th>VIP</th>
           </tr>
         </thead>
         <tbody>
-          {appointment.appointments?.map((appointment) => {
+          {appointments?.filter((appointment) => {
+            return search.toLowerCase() === '' ? appointment : appointment.vin.toLowerCase().includes(search)
+          }).map(appointment => {
             return (
-              <tr key={appointment.id}>
-                <td>{appointment.date_time}</td>
-                <td>{appointment.customer}</td>
+              <tr key={appointment.vin}>
                 <td>{appointment.vin}</td>
+                <td>{appointment.vip ? "Yes" : "No"}</td>
+                <td>{appointment.customer}</td>
+                <td>{appointment.date_time}</td>
+                <td>{appointment.time_day}</td>
+                <td>{appointment.technician.employee_id}</td>
                 <td>{appointment.reason}</td>
                 <td>{appointment.status}</td>
-                <td>
-                  {appointment.technician.first_name}{" "}
-                  {appointment.technician.last_name}
-                </td>
-                {/* <td className="text-center">{vip(appointment.vin)}</td> */}
               </tr>
             );
           })}
         </tbody>
       </table>
-    );
+    </div>
+  );
+}
 
-  }
 
 export default ServiceHistory;

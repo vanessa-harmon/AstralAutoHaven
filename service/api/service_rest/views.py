@@ -91,7 +91,13 @@ def show_technicians(request, id):
         )
     elif request.method == "DELETE":
         count, _ = Technician.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        if count > 0:
+            return JsonResponse({"deleted": "True"})
+        else:
+            return JsonResponse(
+                {'error': 'Sale id does not exist'},
+                status=404
+            )
 
     else:
         content = json.loads(request.body)
@@ -103,5 +109,3 @@ def show_technicians(request, id):
             encoder=TechnicianEncoder,
             safe=False,
         )
-
-
