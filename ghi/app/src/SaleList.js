@@ -30,7 +30,7 @@ function SaleList() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Sales</h1>
       </div>
       <table className="table table-striped">
@@ -52,7 +52,10 @@ function SaleList() {
                 <td>{sale.customer.first_name} {sale.customer.last_name}</td>
                 <td>{sale.automobile.vin}</td>
                 <td>${sale.price}.00</td>
-                <td><button onClick={() => {handleDeleteSale(sale.id)}}>Delete</button></td>
+                <td><button onClick={() => {handleDeleteSale(sale.id)}}
+                  className="btn-close"
+                  aria-label="Close"
+                  type="button"></button></td>
               </tr>
             );
           })}

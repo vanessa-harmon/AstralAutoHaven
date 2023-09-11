@@ -27,7 +27,7 @@ function SalespeopleList() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Salespeople</h1>
       </div>
       <table className="table table-striped">
@@ -45,7 +45,9 @@ function SalespeopleList() {
                 <td>{salesperson.employee_id}</td>
                 <td>{salesperson.first_name}</td>
                 <td>{salesperson.last_name}</td>
-                <td><button onClick={() => {handleDeleteSalesperson(salesperson.id)}}>Delete</button></td>
+                <td><button onClick={() => {handleDeleteSalesperson(salesperson.id)}}
+                className="btn-close"
+                aria-label="Close"></button></td>
               </tr>
             );
           })}

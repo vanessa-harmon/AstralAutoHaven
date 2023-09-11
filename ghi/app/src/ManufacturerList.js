@@ -30,7 +30,7 @@ function ManufacturerList() {
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Manufacturers</h1>
       </div>
       <table className="table table-striped">
@@ -44,7 +44,8 @@ function ManufacturerList() {
             return (
               <tr key={manufacturer.id}>
                 <td>{manufacturer.name}</td>
-                <td><button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}>Delete</button></td>
+                <td><button onClick={() => {handleDeleteManufacturer(manufacturer.id)}}
+                className="btn btn-outline-dark btn-sm">Delete</button></td>
               </tr>
             );
           })}

@@ -9,10 +9,19 @@ Team:
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+Technician model: represents the technician handling the service appointment
+Appointment model: represents a service appointment from a customer
+AutomobileVO model is used to fetch automobile info from the Inventory microservice.
+
+The Service functionality keeps track of service appointments for automobiles.
+and their owners
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+Salesperson model: represents the salesperson making sales
+Customer model: represents the customer purchasing an automobile
+Sale model: represents the trasnaction.
+AutomobileVO model is used to fetch automobile info from the Inventory microservice.
+
+Sales microservice tracks automobile sales from the inventory and
+prevents unauthorized or duplicate sales.

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 function VehicleModelList() {
   const [models, setModels] = useState([]);
 
@@ -19,40 +18,47 @@ function VehicleModelList() {
 
   const handleDeleteModel = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`http://localhost:8100/api/models/${id}/`, { method: "DELETE" }).then(
-        () => {
-          window.location.reload();
-        }
-      );
+      fetch(`http://localhost:8100/api/models/${id}/`, {
+        method: "DELETE",
+      }).then(() => {
+        window.location.reload();
+      });
     }
   };
 
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Models</h1>
       </div>
-      <table className="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Manufacturer</th>
-            <th>Picture</th>
-          </tr>
-        </thead>
-        <tbody>
-          {models.map(model => {
-            return (
-              <tr key={model.id}>
-                <td>{model.name}</td>
-                <td>{model.manufacturer.name}</td>
-                <td><img src={model.picture_url} alt={model.name} width="500" height="300" /></td>
-                <td><button onClick={() => {handleDeleteModel(model.id)}}>Delete</button></td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="row row-cols-1 row-cols-md-4 g-4">
+        {models.map((model) => (
+          <div className="col" key={model.id}>
+            <div className="card h-100">
+              <div className="card-header">
+                <button
+                  onClick={() => {
+                    handleDeleteModel(model.id);
+                  }}
+                  className="btn-close"
+                  aria-label="Close"
+                  type="button"
+                ></button>
+              </div>
+              <img
+                src={model.picture_url}
+                className="card-img-top"
+                alt={model.style_name}
+              />
+              <div className="card-body">
+                <h5 className="card-title">
+                  {model.manufacturer.name} {model.name}
+                </h5>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
