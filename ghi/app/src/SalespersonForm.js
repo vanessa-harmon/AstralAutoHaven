@@ -66,7 +66,7 @@ function SalespersonForm () {
                 <input onChange={handleEmployeeIdChange} placeholder="Employee ID" required type="text" value={employeeId} name="employee_id" id="employee_id" className="form-control"/>
                 <label htmlFor="name">Employee ID...</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button className="btn btn-outline-dark">Create</button>
             </form>
           </div>
         </div>

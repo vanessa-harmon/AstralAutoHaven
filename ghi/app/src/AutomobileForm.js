@@ -134,7 +134,7 @@ function AutomobileForm() {
                 })}
               </select>
               </div>
-            <button onClick={handleSubmit} className="btn btn-primary">Create</button>
+            <button onClick={handleSubmit} className="btn btn-outline-dark">Create</button>
           </form>
         </div>
       </div>

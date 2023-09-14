@@ -12,10 +12,6 @@ function VehicleModelList() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleDeleteModel = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       fetch(`http://localhost:8100/api/models/${id}/`, {
@@ -26,6 +22,10 @@ function VehicleModelList() {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="mt-4">
@@ -34,7 +34,7 @@ function VehicleModelList() {
       <div className="row row-cols-1 row-cols-md-4 g-4">
         {models.map((model) => (
           <div className="col" key={model.id}>
-            <div className="card h-100">
+            <div className="card border-primary mb-3 h-100">
               <div className="card-header">
                 <button
                   onClick={() => {

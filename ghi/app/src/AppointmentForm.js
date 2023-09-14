@@ -89,7 +89,7 @@ function AppointmentForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create an Appointment</h1>
+          <h1>Create a service appointment</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input
@@ -175,7 +175,7 @@ function AppointmentForm() {
                 })}
               </select>
             </div>
-            <button onClick={handleSubmit} className="btn btn-primary">Create</button>
+            <button onClick={handleSubmit} className="btn btn-outline-dark">Create</button>
           </form>
         </div>
       </div>

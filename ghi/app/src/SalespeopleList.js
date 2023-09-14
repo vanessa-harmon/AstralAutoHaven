@@ -13,10 +13,6 @@ function SalespeopleList() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleDeleteSalesperson = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       fetch(`http://localhost:8090/api/salespeople/${id}/`, { method: "DELETE" })
@@ -24,6 +20,10 @@ function SalespeopleList() {
       );
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>

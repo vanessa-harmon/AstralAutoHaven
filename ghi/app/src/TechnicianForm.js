@@ -90,7 +90,7 @@ function TechnicianForm() {
               <label htmlFor="name">Employee ID...</label>
               <div className="form-floating mb-3"></div>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button className="btn btn-outline-dark">Create</button>
           </form>
         </div>
       </div>

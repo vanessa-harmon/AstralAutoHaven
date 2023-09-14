@@ -12,19 +12,19 @@ function AutomobileList() {
     }
   };
 
+  const handleDeleteAutomobile = (vin) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`http://localhost:8100/api/automobiles/${vin}/`, {
+        method: "DELETE",
+      }).then(() => {
+        window.location.reload();
+      });
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleDeleteAutomobile = (vin) => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`http://localhost:8100/api/automobiles/${vin}/`, { method: "DELETE" }).then(
-        () => {
-          window.location.reload();
-        }
-      );
-    }
-  };
 
   return (
     <div>
@@ -43,7 +43,7 @@ function AutomobileList() {
           </tr>
         </thead>
         <tbody>
-          {automobiles.map(automobile => {
+          {automobiles.map((automobile) => {
             return (
               <tr key={automobile.vin}>
                 <td>{automobile.vin}</td>
@@ -51,10 +51,16 @@ function AutomobileList() {
                 <td>{automobile.year}</td>
                 <td>{automobile.model.name}</td>
                 <td>{automobile.model.manufacturer.name}</td>
-                <td>{automobile.sold ? 'Yes' : 'No'}</td>
+                <td>{automobile.sold ? "Yes" : "No"}</td>
                 <td>
-                  <button onClick={() => {handleDeleteAutomobile(automobile.vin)}}
-                  className="btn btn-outline-dark btn-sm">Delete</button>
+                  <button
+                    onClick={() => {
+                      handleDeleteAutomobile(automobile.vin);
+                    }}
+                    className="btn btn-outline-dark btn-sm"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

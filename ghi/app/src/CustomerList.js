@@ -13,10 +13,6 @@ function CustomerList() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleDeleteCustomer = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       fetch(`http://localhost:8090/api/customers/${id}/`, { method: "DELETE" }).then(
@@ -27,6 +23,9 @@ function CustomerList() {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>

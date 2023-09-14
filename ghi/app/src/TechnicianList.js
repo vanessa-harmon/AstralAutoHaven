@@ -12,10 +12,6 @@ function TechnicianList() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleDeleteModel = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       fetch(`http://localhost:8080/api/technicians/${id}/`, {
@@ -26,9 +22,13 @@ function TechnicianList() {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
-      <div>
+      <div className="mt-4">
         <h1>Technicians</h1>
       </div>
       <table className="table table-striped">
@@ -51,9 +51,10 @@ function TechnicianList() {
                     onClick={() => {
                       handleDeleteModel(technician.id);
                     }}
-                    class="btn btn-danger"
+                    className="btn-close"
+                    aria-label="Close"
+                    type="button"
                   >
-                    Delete
                   </button>
                 </td>
               </tr>

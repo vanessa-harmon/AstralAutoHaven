@@ -24,10 +24,6 @@ function SalespersonHistory() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleSalespersonChange = (event) => {
     const value = event.target.value;
     setSelectedSalesperson(value);
@@ -37,6 +33,10 @@ function SalespersonHistory() {
     );
     setSalespersonSales(selectedSalespersonSales);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>

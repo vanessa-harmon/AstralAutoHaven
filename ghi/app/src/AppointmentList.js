@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 function AppointmentList() {
   const [appointments, setAppointment] = useState([]);
   const [vip, setVip] = useState([])
-  const filteredappointments = appointments.filter(appointment=> appointment.status === 'created')
+  const filteredappointments = appointments.filter(appointment=> appointment.status === 'Created')
 
   const fetchData = async () => {
     const url = "http://localhost:8080/api/appointments/";
@@ -13,10 +13,6 @@ function AppointmentList() {
       setAppointment(data.appointment);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleCancelModel = (id) => {
     if (window.confirm("Are you sure you want to cancel?")) {
@@ -51,10 +47,6 @@ function AppointmentList() {
     }
   };
 
-  useEffect(() => {
-    fetchAutomobiles();
-  }, []);
-
 const vinChange = (vin) => {
   if (vip.includes(vin)) {
     return "Yes";
@@ -63,10 +55,15 @@ const vinChange = (vin) => {
   }
 };
 
+useEffect(() => {
+  fetchData();
+  fetchAutomobiles();
+}, []);
+
   return (
     <div>
-      <div>
-        <h1>Appointments</h1>
+      <div className="mt-4">
+        <h1>Service Appointments</h1>
       </div>
       <table className="table table-striped">
         <thead>

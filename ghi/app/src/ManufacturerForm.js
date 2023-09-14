@@ -40,7 +40,7 @@ function ManufacturerForm () {
                 <input onChange={handleNameChange} placeholder="Manufacturer name..." required type="text" value={name} name="name" id="name" className="form-control"/>
                 <label htmlFor="name">Manufacturer name...</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button className="btn btn-outline-dark">Create</button>
             </form>
           </div>
         </div>

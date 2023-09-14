@@ -196,7 +196,7 @@ function SaleForm() {
                 className="form-control"
               />
             </div>
-            <button className="btn btn-primary">Add</button>
+            <button className="btn btn-outline-dark">Add</button>
           </form>
         </div>
       </div>
