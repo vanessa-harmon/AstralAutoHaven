@@ -134,12 +134,14 @@ def sales_list(request):
                 encoder=SaleEncoder,
                 safe=False,
             )
-        except:
+        except Exception as e:
+            print("An error occurred:", str(e))
             response = JsonResponse(
-                {"message": "Could not create the sale"}
+                {"message": f"Could not create the sale: {str(e)}"}
             )
             response.status_code = 400
             return response
+
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])

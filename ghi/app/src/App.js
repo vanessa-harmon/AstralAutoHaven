@@ -25,7 +25,6 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
 
@@ -74,7 +73,7 @@ function App() {
             <Route path="history" element={<ServiceHistory />} />
           </Route>
         </Routes>
-      </div>
+
     </BrowserRouter>
   );
 }

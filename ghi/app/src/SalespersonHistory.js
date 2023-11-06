@@ -29,7 +29,7 @@ function SalespersonHistory() {
     setSelectedSalesperson(value);
 
     const selectedSalespersonSales = sales.filter(
-      (sale) => sale.salesperson.id == value
+      (sale) => sale.salesperson.id === value
     );
     setSalespersonSales(selectedSalespersonSales);
   };

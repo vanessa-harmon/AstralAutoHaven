@@ -14,6 +14,7 @@ function SaleForm() {
     event.preventDefault();
 
     const data = {};
+    console.log("data: ", data)
     data.automobile = automobile;
     data.salesperson = salesperson;
     data.customer = customer;
@@ -31,6 +32,7 @@ function SaleForm() {
 
     try {
       const response = await fetch(saleUrl, fetchConfig);
+      console.log(response)
       if (response.ok) {
 
         const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`

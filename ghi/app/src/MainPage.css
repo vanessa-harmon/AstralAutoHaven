@@ -1,0 +1,20 @@
+.mainpage {
+    margin: 0;
+    padding: 0;
+    /* background-image: url("https://gifdb.com/images/high/driving-fast-car-yellow-jaguar-f-type-r-fi22grltf8gsjw3h.gif"); */
+    background-image: url("https://i.pinimg.com/originals/b6/f3/cf/b6f3cfa44ecdd8d4dd625f5be390eaa3.gif");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.mainpage h1 {
+    color: #ffffff;
+}
+
+.mainpage p {
+    color: #ffffff;
+}
