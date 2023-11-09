@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import logo from '.'
 
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/"><img src='https://live.staticflickr.com/65535/53295401853_caf6f4d70b_n.jpg' alt='Logo' width='100' /></NavLink>
+        <NavLink className="navbar-brand" to="/">CarCar</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
 
         <div className="d-flex flex-column">
           <ul className="navbar-nav me-auto mb-5 mb-lg-0">
