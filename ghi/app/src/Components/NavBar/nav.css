@@ -1,0 +1,45 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    height: 90px;
+    width: auto;
+    z-index: 1000;
+}
+
+.dropdownBtn {
+    border-radius: 2rem;
+    border: none;
+    margin: 1rem;
+    width: 75px;
+    height: 75px;
+    background-color: #85d58d;
+    color: white;
+    z-index: 1000;
+}
+
+.dropdown {
+    background-color: #4b6169;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #FBF69e;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #FBF69e;
+}
+
+.navactive {
+    color: #FBF69e;
+    padding-bottom: 0.5rem;
+}

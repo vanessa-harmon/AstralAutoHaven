@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './inventory.css';
 
 function AutomobileList() {
   const [automobiles, setAutomobiles] = useState([]);
@@ -27,10 +28,8 @@ function AutomobileList() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
+    <div className="bg">
         <h1>Automobiles</h1>
-      </div>
       <table className="table table-striped">
         <thead>
           <tr>

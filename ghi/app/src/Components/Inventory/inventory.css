@@ -1,0 +1,38 @@
+.bg {
+    background-color: #fbf69e;
+    background-size: cover;
+    height: 100%;
+  }
+
+.manufacturers h1,
+.bg h1 {
+    padding: 8rem 0 0;
+    text-align: center;
+    color: #85d58d;
+    font-family: 'Shrikhand', serif;
+}
+
+.table {
+    padding: 2rem;
+    margin: 2rem;
+    color: #85d58d;
+}
+
+.row {
+    padding: 6rem 0 0;
+    color: #85d58d;
+    background-color: #fbf69e;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.row h1 {
+    font-family: 'Shrikhand', serif;
+}
+
+.table img {
+    height: 30px;
+    width: auto;
+}

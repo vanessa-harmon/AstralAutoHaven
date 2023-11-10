@@ -1,70 +1,14 @@
 import React, { useState, useEffect } from "react";
+import './sales.css';
 
 function SaleForm() {
   const [automobile, setAutomobile] = useState("");
   const [salesperson, setSalesperson] = useState("");
   const [customer, setCustomer] = useState("");
-  const [price, setPrice] = useState("");
-
+  const [price, setPrice] = useState(0);
   const [autos, setAutomobiles] = useState([]);
   const [salespeople, setSalespeople] = useState([]);
   const [customers, setCustomers] = useState([]);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const data = {};
-    data.automobile = automobile;
-    data.salesperson = salesperson;
-    data.customer = customer;
-    data.price = price;
-
-    const saleUrl = "http://localhost:8090/api/sales/";
-
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    try {
-      const response = await fetch(saleUrl, fetchConfig);
-      if (response.ok) {
-
-        const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`
-
-        const updateConfig = {
-          method: "put",
-          body: JSON.stringify({ sold : true }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-
-        try {
-          const autoResponse = await fetch(autoUrl, updateConfig);
-          if (!autoResponse.ok) {
-            console.error('Failed to update:', autoResponse.statusText)
-          }
-        } catch (error) {
-          console.error('An error occurred during the update:', error)
-        }
-
-        setAutomobile("");
-        setSalesperson("");
-        setCustomer("");
-        setPrice("");
-    }
-  }
-    catch (error) {
-      console.error('An error occurred during the fetch:', error)
-    }
-  }
-
-
-
 
   const handleAutomobileChange = (event) => {
     const value = event.target.value;
@@ -83,11 +27,60 @@ function SaleForm() {
     setPrice(value);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = {};
+
+    data.automobile = automobile;
+    data.salesperson = salesperson;
+    data.customer = customer;
+    data.price = price;
+    console.log("DATA: ", data)
+    const salesUrl = "http://localhost:8090/api/sales/";
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(salesUrl, fetchConfig);
+      if (response.ok) {
+        setAutomobile("");
+        setSalesperson("");
+        setCustomer("");
+        setPrice("");
+
+        const autoUrl = `http://localhost:8100/api/automobiles/${automobile}/`
+        const updateConfig = {
+          method: "PUT",
+          body: JSON.stringify({ sold : true }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        try {
+          const autoResponse = await fetch(autoUrl, updateConfig);
+          if (!autoResponse.ok) {
+            console.error('Failed to update:', autoResponse.statusText)
+          }
+        } catch (error) {
+          console.error('An error occurred during the update:', error)
+        }
+    } else {
+      console.error('Error:', response.statusText);
+    }
+  } catch (error) {
+      console.error('An error occurred during the fetch:', error)
+    }
+  }
+
   const fetchData = async () => {
     const autombileUrl = "http://localhost:8100/api/automobiles/";
-
     const autoResponse = await fetch(autombileUrl);
-
     if (autoResponse.ok) {
       const data = await autoResponse.json();
       const unsoldAutomobiles = data.autos.filter((automobile) => !automobile.sold);
@@ -95,18 +88,14 @@ function SaleForm() {
     }
 
     const salespersonUrl = "http://localhost:8090/api/salespeople/";
-
     const salespeopleResponse = await fetch(salespersonUrl);
-
     if (salespeopleResponse.ok) {
       const data = await salespeopleResponse.json();
       setSalespeople(data.salespeople);
     }
 
     const customerUrl = "http://localhost:8090/api/customers/";
-
     const customerResponse = await fetch(customerUrl);
-
     if (customerResponse.ok) {
       const data = await customerResponse.json();
       setCustomers(data.customers);
@@ -124,13 +113,13 @@ function SaleForm() {
           <h1>Record a new sale</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="mb-3">
-              <label htmlFor="automobile vin">Automobile VIN</label>
+              <label htmlFor="automobile_vin">Automobile VIN</label>
               <select
                 onChange={handleAutomobileChange}
                 required
-                id="automobile"
+                id="automobile_vin"
                 value={automobile}
-                name="automobile"
+                name="automobile_vin"
                 className="form-select"
               >
                 <option value="">Choose an autombile VIN...</option>
@@ -189,14 +178,14 @@ function SaleForm() {
                 onChange={handlePriceChange}
                 placeholder="0"
                 required
-                type="text"
+                type="number"
                 name="price"
                 id="price"
                 value={price}
                 className="form-control"
               />
             </div>
-            <button className="btn btn-outline-dark">Add</button>
+            <button className="btn btn-outline-info">Add</button>
           </form>
         </div>
       </div>

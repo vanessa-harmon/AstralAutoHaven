@@ -15,8 +15,15 @@ from sales_rest.models import AutomobileVO
 
 
 def get_automobiles():
-    response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles/")
-    content = json.loads(response.content)
+    response = requests.get('http://project-beta-inventory-api-1:8000/api/automobiles/')
+    if response.status_code != 200:
+        print(f'Error: API returned status {response.status_code}')
+        return
+    try:
+        content = response.json()
+    except json.JSONDecodeError:
+        print('Error decoding JSON response')
+        return
     for automobile in content["autos"]:
         AutomobileVO.objects.update_or_create(
             vin=automobile["vin"],

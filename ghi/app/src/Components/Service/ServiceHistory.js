@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import './service.css'
+
 
 function ServiceHistory() {
   const [appointments, setAppointments] = useState([]);
@@ -39,10 +41,8 @@ function ServiceHistory() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
-        <h1>Service History</h1>
-      </div>
+    <div className="appt-service-history">
+        <h1>Appointment Service History</h1>
       <form>
         <input
           className="my-3"

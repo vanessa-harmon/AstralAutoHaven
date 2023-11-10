@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import './service.css'
+
 
 function TechnicianList() {
   const [technician, setTechnician] = useState([]);
@@ -27,10 +29,8 @@ function TechnicianList() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
+    <div className="technicians">
         <h1>Technicians</h1>
-      </div>
       <table className="table table-striped">
         <thead>
           <tr>

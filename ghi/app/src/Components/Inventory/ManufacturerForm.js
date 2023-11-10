@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './inventory.css';
 
 
 function ManufacturerForm () {
@@ -40,7 +41,7 @@ function ManufacturerForm () {
                 <input onChange={handleNameChange} placeholder="Manufacturer name..." required type="text" value={name} name="name" id="name" className="form-control"/>
                 <label htmlFor="name">Manufacturer name...</label>
               </div>
-              <button className="btn btn-outline-dark">Create</button>
+              <button className="btn btn-outline-info">Create</button>
             </form>
           </div>
         </div>

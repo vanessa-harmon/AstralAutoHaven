@@ -1,0 +1,30 @@
+.mainpage {
+    background-image: url("https://i.pinimg.com/originals/2b/de/7d/2bde7d14133968f97d6c4dd898edb989.gif");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    z-index: -1;
+}
+
+.desc {
+  position: absolute;
+  left: 50px;
+  top:275px;
+  font-family: 'Shrikhand', serif;
+  font-size: larger;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mainpage h1 {
+  font-size: 6rem;
+  color: #fbf;
+}
+
+.mainpage p {
+    font-size: 1.75rem;
+    color: white;
+}

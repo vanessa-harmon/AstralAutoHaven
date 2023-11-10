@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './inventory.css';
 
 function VehicleModelList() {
   const [models, setModels] = useState([]);
@@ -27,14 +28,13 @@ function VehicleModelList() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
-        <h1>Models</h1>
-      </div>
+    <div className="bg">
+        <h1>Vehicle Models</h1>
+      <div className="vehicle-models">
       <div className="row row-cols-1 row-cols-md-4 g-4">
         {models.map((model) => (
           <div className="col" key={model.id}>
-            <div className="card border-primary mb-3 h-100">
+            <div className="card border-info mb-5 h-50">
               <div className="card-header">
                 <button
                   onClick={() => {
@@ -58,6 +58,7 @@ function VehicleModelList() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

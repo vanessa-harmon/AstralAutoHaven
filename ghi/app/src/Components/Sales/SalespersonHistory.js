@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import './sales.css'
+
 
 function SalespersonHistory() {
   const [salespeople, setSalespeople] = useState([]);
@@ -29,7 +31,7 @@ function SalespersonHistory() {
     setSelectedSalesperson(value);
 
     const selectedSalespersonSales = sales.filter(
-      (sale) => sale.salesperson.id == value
+      (sale) => sale.salesperson.id === value
     );
     setSalespersonSales(selectedSalespersonSales);
   };
@@ -39,8 +41,7 @@ function SalespersonHistory() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
+    <div className="salespersonHistory">
         <h1>Salesperson History</h1>
         <select
           onChange={handleSalespersonChange}
@@ -59,8 +60,6 @@ function SalespersonHistory() {
             );
           })}
         </select>
-      </div>
-      <div className="mt-4">
         <table className="table table-striped">
           <thead>
             <tr>
@@ -85,7 +84,6 @@ function SalespersonHistory() {
             ))}
           </tbody>
         </table>
-      </div>
     </div>
   );
 }

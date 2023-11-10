@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import './service.css'
+
 
 function TechnicianForm() {
   const handleSubmit = async (event) => {

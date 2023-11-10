@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import './inventory.css';
+
 
 function VehicleModelForm() {
   const [name, setName] = useState('');
@@ -119,7 +121,7 @@ function VehicleModelForm() {
                 })}
               </select>
             </div>
-            <button className="btn btn-outline-dark">Create</button>
+            <button className="btn btn-outline-info">Create</button>
           </form>
         </div>
       </div>

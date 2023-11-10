@@ -1,11 +1,13 @@
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
+from django.core.exceptions import ObjectDoesNotExist
+import logging
 from .models import Salesperson, Customer, Sale, AutomobileVO
 from .encoders import SalespersonEncoder, CustomerEncoder, SaleEncoder
 
+logger = logging.getLogger(__name__)
 
-# Create your views here.
 @require_http_methods(["GET", "POST"])
 def salespeople_list(request):
     if request.method == "GET":
@@ -113,9 +115,8 @@ def sales_list(request):
             safe=False,
         )
     else:
+        content = json.loads(request.body)
         try:
-            content = json.loads(request.body)
-            print(content)
             automobile_vin = content["automobile"]
             salesperson_id = content["salesperson"]
             customer_id = content["customer"]
@@ -134,12 +135,12 @@ def sales_list(request):
                 encoder=SaleEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the sale"}
-            )
+        except ObjectDoesNotExist as e:
+            logger.exception(f"AutomobileVO with VIN {automobile_vin} does not exist: {e}")
+            response = JsonResponse({"message": f"AutomobileVO with VIN {automobile_vin} does not exist"})
             response.status_code = 400
             return response
+
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])

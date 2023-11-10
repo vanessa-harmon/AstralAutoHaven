@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './inventory.css';
 
 
 function AutomobileForm() {
@@ -134,7 +135,7 @@ function AutomobileForm() {
                 })}
               </select>
               </div>
-            <button onClick={handleSubmit} className="btn btn-outline-dark">Create</button>
+            <button onClick={handleSubmit} className="btn btn-outline-info">Create</button>
           </form>
         </div>
       </div>

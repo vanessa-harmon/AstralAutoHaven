@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './sales.css'
 
 function SaleList() {
   const [sales, setSales] = useState([]);
@@ -27,10 +28,8 @@ function SaleList() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4">
+    <div className="sales">
         <h1>Sales</h1>
-      </div>
       <table className="table table-striped">
         <thead>
           <tr>
