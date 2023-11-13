@@ -1,8 +1,8 @@
 # Astral Auto Haven
 
-Astral Auto Haven is an application for managing aspects of an automobile dealership—specifically its inventory, service center, and sales.
+Astral Auto Haven is a comprehensive application designed for the efficient management of various aspects within an automobile dealership, encompassing inventory, sales, and service center functionalities. The project is a collaborative effort led by two key team members:
 
-Team:
+Team Members:
 
 * Dante Burger - Service Center
 
@@ -22,7 +22,7 @@ Team:
     Create an a salesperson
     Show a list of salesperson history
 
-* Inventory was a shared responsibility between teammates.
+* Shared Responsibilities - Inventory
 
     Show a list of manufacturers
     Create a manufacturer
